@@ -12,8 +12,9 @@ RUN pacman -Syyu --noconfirm &&\
     ln -s /usr/bin/js24 /usr/bin/js &&\
     git clone https://github.com/pyload/pyload.git /pyload &&\
     sed -i 's_#!/usr/bin/env python$_#!/usr/bin/env python2_' /pyload/pyLoad*.py &&\
-    /usr/bin/install -g http -o http -m 775 -d /dl &&\
-    /usr/bin/install -g http -o http -m 775 -d /conf
+    /usr/sbin/useradd pyload &&\
+    /usr/bin/install -g pyload -o pyload -m 775 -d /dl &&\
+    /usr/bin/install -g pyload -o pyload -m 775 -d /conf
 
 VOLUME ["/dl", "/conf"]
 
@@ -23,4 +24,4 @@ EXPOSE 9666
 
 WORKDIR /conf
 
-CMD ["/pyload/pyLoadCore.py --configdir=/conf"]
+CMD ["/usr/bin/su", "-", "pyload", "-c /pyload/pyLoadCore.py --configdir=/conf"]
