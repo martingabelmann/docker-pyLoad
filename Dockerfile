@@ -8,7 +8,7 @@ RUN pacman -Syyu --noconfirm &&\
     pacman -S openssl python2 python2-crypto python2-imaging\
               python2-pycurl tesseract python2-pyopenssl js \
               python2-jinja python2-pycurl python2-beaker thrift\
-              python2-beautifulsoup4 git --noconfirm --needed &&\
+              python2-beautifulsoup4 python2-funcsigs  git --noconfirm --needed &&\
     ln -s /usr/bin/js24 /usr/bin/js &&\
     git clone https://github.com/pyload/pyload.git /pyload &&\
     sed -i 's_#!/usr/bin/env python$_#!/usr/bin/env python2_' /pyload/pyLoad*.py &&\
