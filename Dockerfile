@@ -22,6 +22,7 @@ EXPOSE 8000
 EXPOSE 433
 EXPOSE 9666
 
+USER pyload
 WORKDIR /conf
+ENTRYPOINT ["/pyload/pyLoadCore.py", "--configdir=/conf"]
 
-CMD ["/usr/bin/su", "-", "pyload", "-c /pyload/pyLoadCore.py --configdir=/conf"]
