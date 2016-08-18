@@ -10,6 +10,7 @@ RUN pacman -Syyu --noconfirm &&\
     ln -s /usr/bin/js24 /usr/bin/js &&\
     git clone https://github.com/pyload/pyload.git /pyload &&\
     sed -i 's_#!/usr/bin/env python$_#!/usr/bin/env python2_' /pyload/pyLoad*.py &&\
+    sed -i '/^import os$/a if os.path.isfile('\"/conf/pyload.pid\"'): os.remove('\"/conf/pyload.pid\"')' /pyload/pyLoadCore.py &&\
     /usr/sbin/useradd -u 9666  pyload &&\
     /usr/bin/install -g pyload -o pyload -m 775 -d /dl &&\
     /usr/bin/install -g pyload -o pyload -m 775 -d /conf
