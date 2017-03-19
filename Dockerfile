@@ -13,6 +13,7 @@ RUN pacman -Syyu --noconfirm &&\
     unzip v0.4.9.zip && mv pyload-0.4.9 /pyload && rm -rf  v0.4.9.zip &&\
     sed -i 's_#!/usr/bin/env python$_#!/usr/bin/env python2_' /pyload/pyLoad*.py &&\
     sed -i '/^import os$/a if os.path.isfile('\"/conf/pyload.pid\"'): os.remove('\"/conf/pyload.pid\"')' /pyload/pyLoadCore.py &&\
+    sed -i 's/add(request)/add()/' /pyload/module/web/cnl_app.py &&\
     mv /pyload/module/Utils.py /pyload/module/utils.py &&\
     /usr/sbin/useradd -u 9666  pyload && chown -R pyload /pyload/ &&\
     /usr/bin/install -g pyload -o pyload -m 775 -d /dl &&\
