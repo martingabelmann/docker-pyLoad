@@ -10,11 +10,11 @@ RUN pacman -Syyu --noconfirm &&\
     pacman -Sc --noconfirm &&\
     ln -s /usr/bin/js24 /usr/bin/js &&\
     wget https://github.com/pyload/pyload/archive/v0.4.9.zip &&\
-    unzip v0.4.9.zip && mv pyload-0.4.9 /pyload && rm -rf  v0.4.9.zip && chown -R pyload /pyload/ &&\
+    unzip v0.4.9.zip && mv pyload-0.4.9 /pyload && rm -rf  v0.4.9.zip &&\
     sed -i 's_#!/usr/bin/env python$_#!/usr/bin/env python2_' /pyload/pyLoad*.py &&\
     sed -i '/^import os$/a if os.path.isfile('\"/conf/pyload.pid\"'): os.remove('\"/conf/pyload.pid\"')' /pyload/pyLoadCore.py &&\
     mv /pyload/module/Utils.py /pyload/module/utils.py &&\
-    /usr/sbin/useradd -u 9666  pyload &&\
+    /usr/sbin/useradd -u 9666  pyload && chown -R pyload /pyload/ &&\
     /usr/bin/install -g pyload -o pyload -m 775 -d /dl &&\
     /usr/bin/install -g pyload -o pyload -m 775 -d /conf
     
